@@ -1,4 +1,4 @@
---- #my first playbook
+--- #my first playbook ammended to remove http from servers
 - hosts: slaves
   remote_user: ansible
   become: yes
@@ -11,11 +11,11 @@
   - name: Install Web server on Slave nodes
     yum: 
      name: httpd
-     state: latest
+     state: removed
     notify:
     - startservice
   handlers:
   - name: startservice
     service:
       name: httpd
-      state: restarted
+      state: removed
