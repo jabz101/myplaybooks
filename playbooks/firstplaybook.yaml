@@ -12,10 +12,3 @@
     yum: 
      name: httpd
      state: removed
-    notify:
-    - startservice
-  handlers:
-  - name: startservice
-    service:
-      name: httpd
-      state: removed
