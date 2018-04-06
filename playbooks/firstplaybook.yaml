@@ -1,0 +1,21 @@
+--- #my first playbook
+- hosts: slaves
+  remote_user: ansible
+  become: yes
+  become_method: sudo
+  connection: ssh
+  gather_facts: yes
+  vars: 
+    username: myuser
+  tasks:
+  - name: Install Web server on Slave nodes
+    yum: 
+     name: httpd
+     state: latest
+    notify:
+    - startservice
+  handlers:
+  - name: startservice
+    service:
+      name: httpd
+      state: restarted
